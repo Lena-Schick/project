@@ -1,5 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:project/doshas.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:project/einführung.dart';
+import 'package:project/regeln.dart';
+import 'package:project/vorspPage.dart';
+import 'package:project/suppePage.dart';
+import 'package:project/hauptSpPage.dart';
+import 'package:project/dessertPage.dart';
+import 'package:project/Ursprung.dart';
+import 'package:project/hilft.dart';
+import 'package:project/doshas.dart';
+import 'package:project/doshaTyp.dart';
+import 'package:project/vata.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -9,6 +21,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(primarySwatch: Colors.orange),
       home: const MyHomePage(),
+      /* useMaterial3: true,*/
     );
   }
 }
@@ -40,22 +53,104 @@ class _NavigationWrapperState extends State<MyHomePage> {
               child: Text(
                 "Ayurveda für dein Leben",
                 style: TextStyle(
-                  fontSize: 24,
+                  fontSize: 34,
                   fontWeight: FontWeight.bold,
                 ),
               ),
             ),
-            ListTile(
-              title: const Text("Einführung in die Ayurvedaküche"),
-              onTap: () {
-                Navigator.pop(context);
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Einfuehrung()),
+                );
               },
+              child: const Text("Einführung in die Ayurvedaküche"),
             ),
-            ListTile(
-              title: const Text("Regeln für die Ernährung"),
-              onTap: () {
-                Navigator.pop(context);
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Regeln()),
+                );
               },
+              child: const Text("Regeln für die Ernährung"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Ursprung()),
+                );
+              },
+              child: const Text("Der Ursprung von Ayurveda"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const hilft()),
+                );
+              },
+              child: const Text("Dabei hilft Ayurveda"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Doshas()),
+                );
+              },
+              child: const Text("Drei Doshas, fünf Elemente"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const DoshaTyp()),
+                );
+              },
+              child: const Text("Der Dosha-Typ"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Einfuehrung()),
+                );
+              },
+              child: const Text("VATA"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Vata()),
+                );
+              },
+              child: const Text("PITTA"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Einfuehrung()),
+                );
+              },
+              child: const Text("KAPHA"),
+            ),
+            const SizedBox(
+              height: 100,
+              width: 100,
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const MyHomePage()),
+                );
+              },
+              child: const Text("Zurück"),
             ),
           ],
         ),
@@ -74,25 +169,30 @@ class _NavigationWrapperState extends State<MyHomePage> {
             label: 'Home',
           ),
           NavigationDestination(
-            icon: Icon(Icons.search),
-            label: 'Suche',
+            icon: Icon(Icons.lunch_dining_outlined),
+            label: 'Vorspeise',
           ),
           NavigationDestination(
-            icon: Icon(Icons.favorite),
-            label: 'Favoriten',
+            icon: Icon(Icons.soup_kitchen),
+            label: 'Suppe',
           ),
           NavigationDestination(
-            icon: Icon(Icons.account_circle),
-            label: 'Profile',
+            icon: Icon(Icons.lunch_dining_rounded),
+            label: 'Hauptspeise',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.icecream),
+            label: 'Dessert',
           ),
         ],
       ),
       body: SafeArea(
           child: <Widget>[
         const StartPage(),
-        const SearchPage(),
-        const FavoritesPage(),
-        const ProfilePage(),
+        const VorspPage(),
+        const SuppePage(),
+        const HauptSpPage(),
+        const DessertPage(),
       ][currentPageIndex]),
     );
   }
@@ -110,7 +210,7 @@ class StartPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Image(
-            height: 250,
+            height: 300,
             width: 2000,
             image: NetworkImage(
                 "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvdps8Os1lv3xZtvUnmu3xh0ELpSrkaJVuyA&usqp=CAU"),
@@ -125,82 +225,12 @@ class StartPage extends StatelessWidget {
               ),
             ),
           ),
-          const Image(
+          /*const Image(
             height: 300,
             width: 400,
             image: NetworkImage(
                 "https://seanovista.com/wp-content/uploads/2021/12/ayurvedic-food-balance.jpg"),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class SearchPage extends StatelessWidget {
-  const SearchPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.center,
-      child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const SizedBox(
-              width: 100,
-              height: 100,
-              child: Placeholder(),
-            ),
-            Text(
-              'Search',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ]),
-    );
-  }
-}
-
-class FavoritesPage extends StatefulWidget {
-  const FavoritesPage({super.key});
-
-  @override
-  _FavoritesPageState createState() => _FavoritesPageState();
-}
-
-class _FavoritesPageState extends State<FavoritesPage> {
-  final List<String> items = List.generate(50, (i) => "Item $i");
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: items.length,
-      itemBuilder: (context, index) {
-        return ListTile(title: Text(items[index]));
-      },
-    );
-  }
-}
-
-class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.center,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          const SizedBox(
-            width: 100,
-            height: 100,
-            child: Placeholder(),
-          ),
-          Text(
-            'Profile Page',
-            style: Theme.of(context).textTheme.headlineMedium,
-          ),
+          ),*/
         ],
       ),
     );
